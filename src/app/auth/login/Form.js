@@ -234,7 +234,7 @@ const Form = () => {
               <Grid size={{ lg: 11, md: 11, sm: 11, xs: 11 }}>
                 <Box className="right" mt={0}>
                   <Typography variant="h6" className="primary fw6">
-                    <a href="/forgot-password">Forgot Password?</a>
+                    <a href="/auth/forgot-password">Forgot Password?</a>
                   </Typography>
                 </Box>
               </Grid>

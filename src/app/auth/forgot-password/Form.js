@@ -2,7 +2,7 @@
 import { Box, Button, IconButton, Grid, InputAdornment, TextField, Typography, Tooltip, } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link'; 
-import LOGO from '/public/assets/iFieldSmartLogo.svg';
+import LOGO from "/public/assets/dpa_logo.png";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -71,7 +71,7 @@ const Form = () => {
                         {/* Submit Button */}
                         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
                             <Box>
-                                <Link href="/reset-password">
+                                <Link href="/auth/reset-password">
                                     <Button
                                         type="submit"
                                         variant="contained"

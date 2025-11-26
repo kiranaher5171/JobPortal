@@ -7,39 +7,39 @@ const page = () => {
   return (
     <FormLayout>
       <Box id="form-bg">
-      <Container maxWidth="lg" className="main-container">
-        <Grid
-          container
-          alignItems="flex-end"
-          justifyContent="center"
-          style={{ height: "100vh" }}
-        >
-          <Grid size={{ xs: 12, sm: 4, md: 6, lg: 7 }}>
-            <Box>
-              <Box className="form-side-text">
-                <Typography
-                  variant="h1"
-                  className="main-txt"
-                  gutterBottom
-                  pt={1}
-                >
-                  Empowering Contractors
-                </Typography>
+        <Container maxWidth="lg" className="main-container">
+          <Grid
+            container
+            justifyContent="flex-end" 
+            alignItems="center" 
+            sx={{width:"100%"}}
+          >
+            {/* <Grid size={{ lg: 7, md: 6, sm: 4, xs: 12 }}>
+              <Box>
+                <Box className="form-side-text">
+                  <Typography
+                    variant="h1"
+                    className="main-txt"
+                    gutterBottom
+                    pt={1}
+                  >
+                   &nbsp
+                  </Typography>
 
-                <Typography variant="h4" className="sub-txt">
-                  Analyze, Communicate, Resolve Field Issues
-                </Typography>
+                  <Typography variant="h4" className="sub-txt">
+                    Analyze, Communicate, Resolve Field Issues
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
-          </Grid>
+            </Grid> */}
 
-          {/* Right Section */}
-          <Grid size={{ xs: 12, sm: 8, md: 6, lg: 5 }}>
-            <Form />
+            {/* Right Section */}
+            <Grid size={{ lg: 5, md: 8, sm: 10, xs: 12 }}>
+              <Form />
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
     </FormLayout>
   );
 };

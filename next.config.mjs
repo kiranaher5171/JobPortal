@@ -8,7 +8,7 @@ const nextConfig = {
     // Performance optimizations
     compress: true,
     poweredByHeader: false,
-    swcMinify: true,
+    // swcMinify is enabled by default in Next.js 15, no need to specify
     experimental: {
         // Enable React compiler if needed
         optimizePackageImports: ['@mui/material', '@mui/icons-material'],
@@ -29,8 +29,7 @@ const nextConfig = {
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
-    // Compress responses
-    compress: true,
+    // Compress responses (already set above, removed duplicate)
     // Optimize production builds
     productionBrowserSourceMaps: false,
     async rewrites() {

@@ -2,7 +2,7 @@
 import { Box, Button, Grid, IconButton, Tooltip, Typography, } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import LOGO from '/public/assets/iFieldSmartLogo.svg';
+import LOGO from "/public/assets/dpa_logo.png";
 import Done from '/public/assets/auth/done.png';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -12,7 +12,7 @@ const Form = () => {
         <>
             <Box className="form-card">
 
-                <Link href="/reset-password">
+                <Link href="/auth/reset-password">
                     <Tooltip placement='bottom' arrow title="Go Back">
                         <IconButton disableRipple size="large" className="form-back-btn">
                             <KeyboardBackspaceIcon fontSize='medium' />
@@ -21,7 +21,7 @@ const Form = () => {
                 </Link>
 
                 <Box pb={4} className="center">
-                    <Image src={LOGO} className="auth-logo" alt="iFieldSmart Technologies" priority />
+                    <Image src={LOGO} className="auth-logo" alt="Job Portal Logo" priority />
                 </Box>
 
                 <Box mb={5} mt={1}>

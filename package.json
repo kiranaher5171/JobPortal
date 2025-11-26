@@ -10,16 +10,19 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,json,css}\"",
-    "clean": "rm -rf .next out node_modules/.cache",
+    "clean": "rimraf .next out node_modules/.cache",
+    "clean:build": "rimraf .next && npm run build",
+    "rebuild": "rimraf .next && npm run build",
+    "dev:clean": "rimraf .next && npm run dev",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.2.0",
-    "@mui/material": "^7.2.0",
-    "@mui/x-date-pickers": "^7.2.0",
+    "@mui/icons-material": "7.2.0",
+    "@mui/material": "7.2.0",
+    "@mui/x-date-pickers": "7.2.0",
     "ag-grid-react": "^32.0.1",
     "bcryptjs": "^3.0.3",
     "dayjs": "^1.11.12",
@@ -38,6 +41,7 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "^15.0.0"
+    "eslint-config-next": "^15.0.0",
+    "rimraf": "^5.0.5"
   }
 }

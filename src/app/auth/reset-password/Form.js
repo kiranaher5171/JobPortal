@@ -4,21 +4,32 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { Box, Button, Grid, IconButton, InputAdornment, TextField, Tooltip, Typography, } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import LOGO from '/public/assets/iFieldSmartLogo.svg';
+import LOGO from "/public/assets/dpa_logo.png";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 
 const Form = () => {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const handleShowPasswordToggle = () => setShowPassword(!showPassword);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Add your password reset logic here
+        // For now, just redirect to password-updated page
+        router.push('/auth/password-updated');
+    };
     return (
         <>
 
             <Box className="form-card">
 
-                <Link href="/forgot-password">
+                <Link href="/auth/forgot-password">
                     <Tooltip placement='bottom' arrow title="Go Back">
                         <IconButton disableRipple size="large" className="form-back-btn">
                             <KeyboardBackspaceIcon fontSize='medium' />
@@ -42,7 +53,7 @@ const Form = () => {
                     <Typography variant='h4' className='form-heading'>RESET PASSWORD</Typography>
                 </Box>
 
-                <Box>
+                <Box component="form" onSubmit={handleSubmit}>
                     <Grid container alignItems="top" justifyContent="center" spacing={3}>
                         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
                             <Box className="form-textfield">
@@ -50,7 +61,10 @@ const Form = () => {
                                     placeholder="New Password"
                                     variant="outlined"
                                     type={showPassword ? 'text' : 'password'}
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
                                     fullWidth
+                                    required
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="end">
@@ -84,7 +98,10 @@ const Form = () => {
                                     placeholder="Confirm Password"
                                     variant="outlined"
                                     type={showPassword ? 'text' : 'password'}
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                     fullWidth
+                                    required
                                     InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="end">
@@ -115,19 +132,16 @@ const Form = () => {
                         {/* Submit Button */}
                         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
                             <Box>
-                                <Link href="/password-updated">
-                                    <Button
-                                        type="submit"
-                                        variant="contained"
-                                        className="auth-btn"
-                                        fullWidth
-                                        disableRipple
-                                    >
-                                        Set password
-                                    </Button>
-                                </Link>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    className="auth-btn"
+                                    fullWidth
+                                    disableRipple
+                                >
+                                    Set password
+                                </Button>
                             </Box>
-
                         </Grid>
 
 
