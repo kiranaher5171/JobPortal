@@ -14,6 +14,7 @@
     "clean:build": "rimraf .next && npm run build",
     "rebuild": "rimraf .next && npm run build",
     "dev:clean": "rimraf .next && npm run dev",
+    "setup:env": "node setup-env.js",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
