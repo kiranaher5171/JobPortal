@@ -1,0 +1,184 @@
+.textfield .MuiOutlinedInput-root {
+  padding-left: 0px !important;
+}
+
+.textfield .MuiOutlinedInput-input {
+  color: var(--black) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 10px 12px !important;
+}
+
+.textfield .MuiSvgIcon-root {
+  color: var(--black) !important;
+  font-size: 20px !important;
+  opacity: 0.8 !important;
+}
+
+.textfield ::placeholder {
+  color: var(--gry-txt) !important;
+}
+.textfield .MuiOutlinedInput-notchedOutline {
+  border-color: #d1d5db !important;
+  border-width: 1px !important;
+}
+
+.textfield .MuiAutocomplete-input {
+  padding: 10px 12px !important;
+}
+
+.MuiAutocomplete-option {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--black) !important;
+}
+
+.auto-complete .MuiInputBase-root {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.textfield .datepicker .MuiOutlinedInput-input {
+  padding: 10px 12px !important;
+  padding-right: 0px !important;
+}
+
+.datepicker .MuiFormControl-root {
+  width: 100% !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary) !important;
+  border-width: 2px !important;
+}
+
+.MuiInputBase-multiline {
+  padding: 0px !important;
+}
+
+.textfield .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(12px, -8px) scale(0.75);
+  font-size: 14px !important;
+  color: var(--primary);
+  font-weight: 500 !important;
+}
+
+.textfield .MuiInputLabel-outlined {
+  transform: translate(12px, 10px) scale(1);
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.country-select .MuiInputBase-adornedEnd {
+  padding-right: 22px !important;
+}
+
+.datepicker .MuiFormControl-root {
+  width: 100% !important;
+}
+
+.MuiOutlinedInput-input.Mui-disabled {
+  color: #252c32 !important;
+  -webkit-text-fill-color: #252c32 !important;
+}
+
+.textfield.adorn .MuiInputAdornment-root .MuiTypography-root {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: normal !important;
+  color: var(--secondary) !important;
+  padding: 12px !important;
+  border-right: 2px solid var(--gry-txt) !important;
+}
+
+.textfield.adorn ::placeholder {
+  color: #9ca3af !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+.textfield.adorn .MuiOutlinedInput-input {
+  padding-left: 0px !important;
+}
+
+.auto-complete.noClear .MuiAutocomplete-clearIndicator {
+  display: none !important;
+}
+.auto-complete.noClear .MuiOutlinedInput-root {
+  padding-right: 39px !important;
+}
+
+.label {
+  font-size: 13px !important;
+  line-height: normal !important;
+  font-weight: 500 !important;
+  color: #586166 !important;
+  padding-bottom: 4px !important;
+}
+
+.MuiInput-root::after {
+  border-bottom: 2px solid var(--primary) !important;
+}
+
+.textfield.standard .MuiInputBase-input {
+  color: var(--black) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 8px 0px !important;
+}
+
+.multi-select .MuiAutocomplete-tag {
+  display: none !important;
+}
+.multi-select .MuiChip-label {
+  padding: 0px 12px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: var(--text) !important;
+}
+
+.multi-select .custom-select .MuiOutlinedInput-input {
+  color: var(--black) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  padding: 4px 8px !important;
+  padding-right: 30px !important;
+}
+
+.multi-select .custom-select .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
+.MuiPopover-paper.MuiMenu-paper {
+min-width: 100px !important;
+  width: fit-content !important;
+}
+
+.MuiPopover-paper.MuiMenu-paper .MuiMenuItem-root {
+  font-size: 13px !important;
+  line-height: normal !important;
+  font-weight: 500 !important;
+  width: fit-content !important;
+  min-width: 100px !important;
+} 
+
+/* Ensure MUI input root also has white background on autofill */
+.MuiOutlinedInput-root input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.filter-chips.MuiButtonBase-root.MuiChip-root{
+  background-color: var(--primary) !important;
+  color: #fff !important;
+  padding: 6px 8px !important;
+  height: auto !important;
+  font-size: 12px !important;
+  line-height: normal !important;
+  border-radius: 6px !important;
+}
+
+.filter-chips.MuiButtonBase-root.MuiChip-root .MuiChip-deleteIcon{
+  margin-left: 4px !important;
+  color: #ffffff !important;
+}

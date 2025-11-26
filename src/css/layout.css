@@ -1,0 +1,193 @@
+#header {
+  background-color: white !important;
+  box-shadow: none !important;
+}
+
+.logo {
+  width: 160px !important;
+  height: auto !important;
+}
+.m-logo {
+  width: 70px !important;
+  height: auto !important;
+}
+
+.smlogo {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.drawer .MuiDrawer-paper {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+  border: none !important;
+}
+
+.page-header {
+  color: var(--primary) !important;
+  font-size: 18px !important;
+  line-height: normal !important;
+  margin: 0px !important;
+}
+
+.footer {
+  /* background-color: #d9d9d9 !important; */
+  padding: 10px 0px !important;
+  /* position: absolute !important; */
+  width: 100% !important;
+  bottom: 0px !important;
+}
+
+.sidebar-bg {
+  padding: 16px !important;
+  height: 100vh !important;
+  position: relative !important;
+  background-color: var(--white) !important;
+}
+
+#menus {
+  padding-top: 12px !important;
+}
+
+#menus .MuiList-root {
+  position: relative !important;
+  height: calc(100vh - 100px) !important;
+}
+
+#menus .MuiListItemIcon-root {
+  min-width: 35px !important;
+  font-size: 20px !important;
+}
+
+#menus .MuiListItemButton-root {
+  background-color: var(--white) !important;
+  margin: 6px 0px !important;
+  border-radius: 6px !important;
+}
+
+#menus .MuiListItemText-primary {
+  font-size: 14px !important;
+  line-height: normal !important;
+  color: var(--gry-txt) !important;
+}
+
+#menus .MuiSvgIcon-root {
+  font-size: 16px !important;
+  color: var(--primary) !important;
+}
+
+#menus .MuiListItemButton-root.Mui-selected {
+  background-color: #eef0f8 !important;
+}
+
+#menus .MuiListItemButton-root.Mui-selected .MuiListItemIcon-root {
+  color: var(--primary) !important;
+}
+
+#menus .MuiListItemButton-root.Mui-selected .MuiListItemText-primary {
+  color: var(--primary) !important;
+}
+
+.notifications .MuiIconButton-root {
+  color: var(--text) !important; 
+}
+
+.notifications .MuiBadge-badge {
+  background-color: var(--primary) !important;
+  top: 10px !important;
+  right: 10px !important;
+  font-size: 11px !important; 
+  height: 16px !important;
+  width: 16px !important;
+  min-width: 16px !important;
+}
+
+#profile .MuiListItemButton-root {
+  padding: 0px !important;
+  padding-right: 30px !important;
+}
+
+#profile .MuiListItemButton-root:hover {
+  background-color: transparent !important;
+}
+
+#profile h6 {
+  color: var(--black) !important;
+}
+
+#profile h6 span {
+  color: #a6a6a6 !important;
+}
+
+#profile .MuiListItemSecondaryAction-root {
+  color: var(--black) !important;
+  display: flex !important;
+  align-items: center !important;
+  right: 4px !important;
+}
+
+#profile .MuiListItemAvatar-root {
+  min-width: 40px !important;
+}
+
+#profile .MuiListItemAvatar-root .MuiAvatar-root {
+  font-size: 14px !important;
+  line-height: normal !important;
+  font-weight: 500 !important;
+  background-color: var(--gry-txt) !important;
+  height: 35px !important;
+  width: 35px !important;
+}
+
+#profile-menu .MuiPaper-root {
+  border-radius: 6px !important;
+  padding: 4px !important;
+}
+
+#profile-menu .profile-options {
+  font-size: 12px !important;
+  line-height: normal !important;
+  text-transform: capitalize !important;
+  color: var(--black) !important;
+  padding: 8px 18px !important;
+  padding-left: 14px !important;
+  min-width: 120px !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  border-radius: 0px !important;
+  border-left: 4px solid transparent !important;
+}
+
+#profile-menu .profile-options:hover {
+  border-left: 4px solid var(--secondary) !important;
+  background-color: transparent !important;
+  color: var(--secondary) !important;
+}
+
+/* Media Queries */
+#mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  #desktop-only {
+    display: none !important;
+  }
+  #mobile-only {
+    display: inherit !important;
+  }
+  .footer {
+    position: relative !important;
+  }
+  #profile .MuiListItemButton-root { 
+  padding-right: 0px !important;
+}
+}
+
+/* .drawer_btn {
+  border: 2px solid var(--gry-txt) !important;
+  border-radius: 4px !important;
+  padding: 4px !important;
+}
+.drawer_btn svg {
+  font-size: 20px !important;
+} */

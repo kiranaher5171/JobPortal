@@ -1,0 +1,81 @@
+/* === Page Loader Styles === */
+.pageLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.pageLoader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    display: inline-block;
+    width: 5px;
+    height: 20px;
+    background-color: #ffffff;
+    margin: 0 2px;
+}
+
+.dot:nth-child(1) {
+    animation: grow 1s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+    animation: grow 1s ease-in-out 0.15s infinite;
+}
+
+.dot:nth-child(3) {
+    animation: grow 1s ease-in-out 0.30s infinite;
+}
+
+.dot:nth-child(4) {
+    animation: grow 1s ease-in-out 0.45s infinite;
+}
+
+@keyframes grow {
+
+    0%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(1.8);
+    }
+}
+
+
+/* local loder styles */
+.container {
+    --uib-size: 78px;
+    --uib-color: var(--primary) !important;
+    --uib-speed: 1.4s;
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--uib-size) * 0.51);
+    height: calc(var(--uib-size) * 0.51);
+  }
+
+  .localloader {
+    height: 100vh !important;
+    display: grid !important;
+    place-items: center !important;
+  }

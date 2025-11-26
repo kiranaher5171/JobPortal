@@ -1,0 +1,43 @@
+{
+  "name": "HRConnect",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,json,css}\"",
+    "clean": "rm -rf .next out node_modules/.cache",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.12",
+    "@mui/material": "^7.2.0",
+    "@mui/x-date-pickers": "^6.20.0",
+    "ag-grid-react": "^32.0.1",
+    "bcryptjs": "^3.0.3",
+    "dayjs": "^1.11.12",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.0.0",
+    "nanoid": "^3.3.8",
+    "next": "^15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.3.8",
+    "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
+    "sass": "^1.77.8",
+    "sharp": "^0.33.5",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "^15.0.0"
+  }
+}

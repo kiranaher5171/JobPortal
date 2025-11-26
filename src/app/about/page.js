@@ -1,0 +1,110 @@
+"use client";
+import React from "react";
+import { Typography, Box, Container, Grid } from "@mui/material";
+import MainLayout from "@/components/layout/MainLayout";
+
+const page = () => {
+  return (
+    <MainLayout>
+      <Box className="page-content" component="main">
+        <Container maxWidth="lg">
+          <Box sx={{ py: 4 }}>
+            <Typography variant="h1" className="fw6 text" gutterBottom component="h1">
+              About Us
+            </Typography>
+            <Typography
+              variant="body1"
+              className="text-secondary"
+              sx={{ mb: 4 }}
+              component="p"
+            >
+              Welcome to our Job Portal - Your gateway to finding the perfect
+              career opportunity.
+            </Typography>
+
+            <Grid container spacing={4}>
+              <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h2" className="fw6 text" gutterBottom component="h2">
+                    Our Mission
+                  </Typography>
+                  <Typography variant="body1" className="text-secondary" component="p">
+                    Our mission is to connect talented job seekers with the
+                    right employers, creating meaningful career opportunities
+                    and fostering professional growth. We strive to make the job
+                    search process seamless, efficient, and rewarding for both
+                    candidates and companies.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h2" className="fw6 text" gutterBottom component="h2">
+                    Our Vision
+                  </Typography>
+                  <Typography variant="body1" className="text-secondary" component="p">
+                    To become the leading job portal platform that empowers
+                    individuals to achieve their career goals while helping
+                    businesses find the perfect talent. We envision a world
+                    where finding the right job or the right candidate is just a
+                    click away.
+                  </Typography>
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h2" className="fw6 text" gutterBottom component="h2">
+                    What We Offer
+                  </Typography>
+                  <Box component="section" aria-labelledby="what-we-offer-heading">
+                    <Typography
+                      variant="body1"
+                      className="text-secondary"
+                      component="div"
+                    >
+                      <ul style={{ paddingLeft: "20px", listStyleType: "disc" }} role="list">
+                        <li role="listitem">
+                          Comprehensive job listings across various industries
+                        </li>
+                        <li role="listitem">User-friendly interface for easy navigation</li>
+                        <li role="listitem">Advanced search and filter options</li>
+                        <li role="listitem">Application tracking system</li>
+                        <li role="listitem">Profile management for job seekers</li>
+                        <li role="listitem">Employer dashboard for job posting and management</li>
+                      </ul>
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+                <Box
+                  sx={{
+                    mt: 2,
+                    p: 3,
+                    backgroundColor: "var(--bg-hover)",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography variant="h3" className="fw6 text" gutterBottom component="h3">
+                    Get Started Today
+                  </Typography>
+                  <Typography variant="body1" className="text-secondary" component="p">
+                    Whether you're a job seeker looking for your next
+                    opportunity or an employer seeking talented professionals,
+                    our platform is designed to meet your needs. Join us today
+                    and take the next step in your career journey.
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
+    </MainLayout>
+  );
+};
+
+export default page;

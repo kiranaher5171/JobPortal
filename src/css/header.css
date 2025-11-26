@@ -1,0 +1,89 @@
+/* #Appbar { 
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(16.6px);
+  -webkit-backdrop-filter: blur(16.6px);
+  z-index: 1300 !important;
+  height: 65PX !important;
+  display: grid !important;
+  align-items: center !important;
+ } */
+
+/* #Appbar {
+  z-index: 1300 !important;
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+} */
+
+#Appbar {
+  z-index: 1300 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1), 
+              box-shadow 0.4s cubic-bezier(0.4,0,0.2,1),
+              backdrop-filter 0.4s cubic-bezier(0.4,0,0.2,1),
+              border-bottom 0.4s cubic-bezier(0.4,0,0.2,1);
+  padding-right: 0px !important;
+}
+
+#Appbar.scrolled {
+  background: rgba(10, 10, 20, 0.94) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25), 0 1.5px 6px 0 rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(18px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
+  /* border-bottom: 1px solid rgba(40, 40, 60, 0.18) !important; */
+}
+
+
+
+.Appbar_height {
+  min-height: 50px !important;
+}
+
+.appbar_logo {
+  color: transparent;
+  width: 65px ;
+  height: auto !important;
+}
+
+.menus {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--white) !important;
+  text-transform: none !important;
+  letter-spacing: 1px !important;
+  /* margin: 0px 5px !important; */
+}
+
+.menus:hover {
+  background-color: inherit !important;
+  color: var(--secondary) !important;
+}
+
+.menus.active {
+  color: var(--secondary) !important;
+  font-weight: 500 !important;
+  border-bottom: 2px solid;
+  padding-bottom: 3px;
+  border-radius: 0px;
+}
+
+.MuiDrawer-paper {
+  background-color: #ffffff !important;
+  min-width: 240px !important;
+}
+
+.signin-btn{
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #000 !important;
+  background-color: #fff !important;
+  border-radius: 0px !important;
+  min-width: 150px !important;
+  box-shadow: none !important;
+  text-transform: uppercase !important;
+}

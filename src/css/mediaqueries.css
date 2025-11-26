@@ -1,0 +1,71 @@
+/* New Media Queries */
+
+.mobile_menus {
+  display: none !important;
+}
+
+.desktop_menus {
+  display: inline !important;
+}
+
+@media (max-width: 899px) {
+
+  .mobile_menus {
+    display: inline !important;
+  }
+
+  .desktop_menus {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 28px !important;
+    line-height: 40px !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+    line-height: 30px !important;
+  }
+
+  h3 {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+
+  h4 {
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+
+  h5 {
+    font-size: 14px !important;
+    line-height: 22px !important;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 550px) {
+  #page-heading-section.fx_sb {
+    display: block !important;
+  }
+
+  #page-heading-section .fx_fe {
+    margin-top: 8px !important;
+    display: block !important;
+  }
+
+  #page-heading-section .table-search {
+    margin-top: 8px !important;
+  }
+
+  #page-heading-section .table-search .MuiFormControl-root {
+    width: 100% !important;
+  }
+
+  #tb_footer {
+    display: block !important;
+  }
+}
