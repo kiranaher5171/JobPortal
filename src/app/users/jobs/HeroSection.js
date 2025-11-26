@@ -8,7 +8,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
-import HeroBanner from "/assets/HeroBanner.jpg";
 
 const HeroSection = () => {
     const router = useRouter();
@@ -26,7 +25,7 @@ const HeroSection = () => {
         <>
             <Box className="smHeroSection">
                 <Image
-                    src={HeroBanner}
+                    src="/assets/HeroBanner.jpg"
                     alt="Background"
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'center' }}

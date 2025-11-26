@@ -16,8 +16,6 @@ import {
 } from '@mui/material';
 import { usePathname, useRouter } from 'next/navigation';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '/assets/dpa_logo.png';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import ProfileMenus from '@/components/ProfileMenus';

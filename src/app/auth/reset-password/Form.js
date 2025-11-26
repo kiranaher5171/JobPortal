@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import LOGO from "/assets/dpa_logo.png";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -39,7 +38,7 @@ const Form = () => {
 
                 <Box pb={4} className="center">
                     <Image 
-                        src={LOGO} 
+                        src="/assets/dpa_logo.png" 
                         className="auth-logo" 
                         alt="Job Portal Logo" 
                         priority 

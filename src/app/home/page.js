@@ -4,8 +4,6 @@ import { Typography, Box, Container, Grid } from "@mui/material";
 import MainLayout from "@/components/layout/MainLayout";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import HeroBanner from "/assets/HeroBanner.jpg";
 import HeroSection from "./HeroSection";
 
 const page = () => {

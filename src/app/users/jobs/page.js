@@ -47,7 +47,6 @@ import Link from "next/link";
 import { JobCardSkeleton } from "@/components/skeletons";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
-import HeroBanner from "/assets/HeroBanner.jpg";
 
 const FindJobsPage = () => {
   const [jobs, setJobs] = useState([]);
@@ -745,7 +744,7 @@ const FindJobsPage = () => {
         {/* Hero Section */}
         <Box className="smHeroSection">
           <Image
-            src={HeroBanner}
+            src="/assets/HeroBanner.jpg"
             alt="Background"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}

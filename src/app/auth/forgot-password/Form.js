@@ -2,7 +2,6 @@
 import { Box, Button, IconButton, Grid, InputAdornment, TextField, Typography, Tooltip, } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link'; 
-import LOGO from "/assets/dpa_logo.png";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -24,7 +23,7 @@ const Form = () => {
  
                 <Box pb={4} className="center">
                     <Image 
-                        src={LOGO} 
+                        src="/assets/dpa_logo.png" 
                         className="auth-logo" 
                         alt="Job Portal Logo" 
                         priority 

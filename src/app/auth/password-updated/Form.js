@@ -2,8 +2,6 @@
 import { Box, Button, Grid, IconButton, Tooltip, Typography, } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import LOGO from "/assets/dpa_logo.png";
-import Done from '/assets/auth/done.png';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 
@@ -21,7 +19,7 @@ const Form = () => {
                 </Link>
 
                 <Box pb={4} className="center">
-                    <Image src={LOGO} className="auth-logo" alt="Job Portal Logo" priority />
+                    <Image src="/assets/dpa_logo.png" className="auth-logo" alt="Job Portal Logo" priority />
                 </Box>
 
                 <Box mb={5} mt={1}>
@@ -32,7 +30,7 @@ const Form = () => {
                     <Grid container alignItems="top" justifyContent="center" spacing={3}>
                         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
                             <Box>
-                                <Image src={Done} alt='Done' className='auth-gif' />
+                                <Image src="/assets/auth/done.png" alt='Done' className='auth-gif' />
                             </Box>
                         </Grid>
 
