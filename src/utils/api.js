@@ -71,11 +71,20 @@ export async function apiRequest(url, options = {}) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  let response = await fetch(`${API_BASE}${url}`, {
-    ...options,
-    headers,
-    credentials: 'include', // Include cookies
-  });
+  let response;
+  try {
+    response = await fetch(`${API_BASE}${url}`, {
+      ...options,
+      headers,
+      credentials: 'include', // Include cookies
+    });
+  } catch (networkError) {
+    // Handle network errors (offline, CORS, etc.)
+    if (networkError instanceof TypeError && networkError.message.includes('fetch')) {
+      throw new Error('Network error. Please check your internet connection and try again.');
+    }
+    throw networkError;
+  }
 
   // If unauthorized, try to refresh token
   if (response.status === 401 && token) {

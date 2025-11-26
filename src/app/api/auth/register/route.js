@@ -90,6 +90,24 @@ export async function POST(request) {
     );
   } catch (error) {
     console.error('Registration error:', error);
+    
+    // Handle different error types
+    if (error.message && (
+      error.message.includes('MongoDB') || 
+      error.message.includes('MongoServerSelectionError') ||
+      error.message.includes('SSL') ||
+      error.message.includes('TLS') ||
+      error.message.includes('connection')
+    )) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: 'Database connection failed. Please check your MongoDB connection string in .env.local'
+        },
+        { status: 500 }
+      );
+    }
+    
     return NextResponse.json(
       { success: false, error: error.message || 'Registration failed' },
       { status: 400 }

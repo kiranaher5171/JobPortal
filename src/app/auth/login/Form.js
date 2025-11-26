@@ -29,6 +29,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import WorkIcon from "@mui/icons-material/Work";
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
+import { SuccessDialog } from "@/components/dialogs";
 
 const Form = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +41,7 @@ const Form = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [loginInfo, setLoginInfo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const router = useRouter();
   const { login, loading: authLoading } = useAuth();
 
@@ -103,16 +105,35 @@ const Form = () => {
         path: destination,
       });
 
-      setSnackbarMessage(`${user.role === "admin" ? "Admin" : "User"} login successful! Redirecting...`);
-      setSnackbarSeverity("success");
-      setSnackbarOpen(true);
-
+      // Close snackbar first
+      setSnackbarOpen(false);
+      
+      // Show success dialog
+      setSuccessDialogOpen(true);
+      
+      // Redirect after dialog closes
       setTimeout(() => {
-        router.push(destination);
-      }, 1500);
+        setSuccessDialogOpen(false);
+        setTimeout(() => {
+          router.push(destination);
+        }, 300);
+      }, 2000);
     } catch (error) {
       console.error("Error during login:", error);
-      setSnackbarMessage("Network error. Please check your connection and try again.");
+      
+      // Check if it's a network error
+      let errorMessage = "Network error. Please check your connection and try again.";
+      if (error.message) {
+        if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
+          errorMessage = "Network error. Please check your internet connection and try again.";
+        } else if (error.message.includes("connection")) {
+          errorMessage = "Database connection failed. Please try again.";
+        } else {
+          errorMessage = error.message || errorMessage;
+        }
+      }
+      
+      setSnackbarMessage(errorMessage);
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
       setLoading(false);
@@ -318,6 +339,19 @@ const Form = () => {
           {snackbarMessage}
         </Alert>
       </Snackbar>
+
+      {/* Success Dialog */}
+      <SuccessDialog
+        open={successDialogOpen}
+        onClose={() => {
+          setSuccessDialogOpen(false);
+          const destination = loginInfo?.path || (loginInfo?.role === "Admin" ? "/admin/dashboard" : "/users/jobs");
+          setTimeout(() => {
+            router.push(destination);
+          }, 300);
+        }}
+        message={`Login successful! Welcome ${loginInfo?.role || "User"}. Redirecting to ${loginInfo?.destination || "your dashboard"}...`}
+      />
     </>
   );
 };
