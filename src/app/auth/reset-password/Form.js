@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import LOGO from "/public/assets/dpa_logo.png";
+import LOGO from "/assets/dpa_logo.png";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 

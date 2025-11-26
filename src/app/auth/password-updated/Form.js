@@ -2,8 +2,8 @@
 import { Box, Button, Grid, IconButton, Tooltip, Typography, } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import LOGO from "/public/assets/dpa_logo.png";
-import Done from '/public/assets/auth/done.png';
+import LOGO from "/assets/dpa_logo.png";
+import Done from '/assets/auth/done.png';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 
