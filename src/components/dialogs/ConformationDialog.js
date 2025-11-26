@@ -144,11 +144,11 @@ const ConformationDialog = ({
                 <DialogTitle id="conformation-dialog-title">
                     Session Inactivity Warning
                 </DialogTitle>
-                <DialogContent>
+            <DialogContent>
                     <Typography id="conformation-dialog-description">
                         You have been inactive for a while. Do you want to continue your session?
                     </Typography>
-                </DialogContent>
+            </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         No
@@ -162,7 +162,7 @@ const ConformationDialog = ({
                         Continue Login
                     </Button>
                 </DialogActions>
-            </Dialog>
+        </Dialog>
 
             {/* Success Dialog */}
             <SuccessDialog
