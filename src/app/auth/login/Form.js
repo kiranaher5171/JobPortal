@@ -29,7 +29,6 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import WorkIcon from "@mui/icons-material/Work";
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
-import { SuccessDialog } from "@/components/dialogs";
 
 const Form = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,9 +38,7 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [loginInfo, setLoginInfo] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const router = useRouter();
   const { login, loading: authLoading } = useAuth();
 
@@ -96,27 +93,20 @@ const Form = () => {
         localStorage.removeItem("rememberedEmail");
       }
 
-      // Set login info for display
+      // Set destination based on user role
       const destination = user.role === "admin" ? "/admin/dashboard" : "/users/jobs";
+      const roleName = user.role === "admin" ? "Admin" : "User";
       const destinationName = user.role === "admin" ? "Dashboard" : "Find Jobs";
-      setLoginInfo({
-        role: user.role === "admin" ? "Admin" : "User",
-        destination: destinationName,
-        path: destination,
-      });
 
-      // Close snackbar first
-      setSnackbarOpen(false);
+      // Show success message in Snackbar
+      setSnackbarMessage(`Login successful! Welcome ${roleName}. Redirecting to ${destinationName}...`);
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+      setLoading(false);
       
-      // Show success dialog
-      setSuccessDialogOpen(true);
-      
-      // Redirect after dialog closes
+      // Redirect after showing snackbar
       setTimeout(() => {
-        setSuccessDialogOpen(false);
-        setTimeout(() => {
-          router.push(destination);
-        }, 300);
+        router.push(destination);
       }, 2000);
     } catch (error) {
       console.error("Error during login:", error);
@@ -339,19 +329,6 @@ const Form = () => {
           {snackbarMessage}
         </Alert>
       </Snackbar>
-
-      {/* Success Dialog */}
-      <SuccessDialog
-        open={successDialogOpen}
-        onClose={() => {
-          setSuccessDialogOpen(false);
-          const destination = loginInfo?.path || (loginInfo?.role === "Admin" ? "/admin/dashboard" : "/users/jobs");
-          setTimeout(() => {
-            router.push(destination);
-          }, 300);
-        }}
-        message={`Login successful! Welcome ${loginInfo?.role || "User"}. Redirecting to ${loginInfo?.destination || "your dashboard"}...`}
-      />
     </>
   );
 };

@@ -49,8 +49,13 @@ export default function ProfileMenus() {
     setLogoutDialogOpen(false);
     // Small delay to ensure dialog closes before navigation
     setTimeout(async () => {
-      await logout();
-      // Redirect to home page after logout
+      try {
+        await logout();
+      } catch (error) {
+        // Logout should always succeed locally, even if API call fails
+        // Error is already handled in logout function
+      }
+      // Redirect to home page after logout (always redirect, even if API call failed)
       window.location.href = "/home";
     }, 100);
   };

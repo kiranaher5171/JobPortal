@@ -23,7 +23,9 @@ import {
   DialogActions,
   IconButton,
   Tooltip,
+  Divider,
 } from "@mui/material";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import MainLayout from "@/components/layout/MainLayout";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
@@ -438,15 +440,34 @@ export default function AdminApplicationsPage() {
         onClose={handleCloseDetailDialog}
         maxWidth="md"
         fullWidth
+        PaperProps={{
+          sx: {
+            maxHeight: "90vh",
+            display: "flex",
+            flexDirection: "column",
+          },
+        }}
       >
         {selectedApplication && (
           <>
-            <DialogTitle>
-              <Typography variant="h6" className="fw6" component="span">
+            <DialogTitle id="alert-dialog-title">
+              <Typography variant="h6" className="fw5 white" component="span">
                 Application Details
               </Typography>
+              <IconButton
+                aria-label="close"
+                onClick={handleCloseDetailDialog}
+                sx={{ position: "absolute", right: 8, top: 10 }}
+              >
+                <IoIosCloseCircleOutline className="white" />
+              </IconButton>
             </DialogTitle>
-            <DialogContent dividers>
+            
+            <Box>
+              <Divider />
+            </Box>
+
+            <DialogContent>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {/* Type and Job Information */}
                 <Box>
@@ -454,28 +475,32 @@ export default function AdminApplicationsPage() {
                     Application Information
                   </Typography>
                   <Box sx={{ pl: 2, display: "flex", flexDirection: "column", gap: 1 }}>
-                    <Typography variant="body2" className="text-secondary">
-                      <strong>Type:</strong>{" "}
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Typography variant="body2" className="text-secondary" component="span">
+                        <strong>Type:</strong>
+                      </Typography>
                       <Chip
                         label={selectedApplication.type === "referral" ? "Referral" : "Application"}
                         size="small"
                         color={selectedApplication.type === "referral" ? "primary" : "default"}
                       />
-                    </Typography>
+                    </Box>
                     <Typography variant="body2" className="text-secondary">
                       <strong>Job Role:</strong> {selectedApplication.jobRole || "N/A"}
                     </Typography>
                     <Typography variant="body2" className="text-secondary">
                       <strong>Job ID:</strong> {selectedApplication.jobId || "N/A"}
                     </Typography>
-                    <Typography variant="body2" className="text-secondary">
-                      <strong>Status:</strong>{" "}
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Typography variant="body2" className="text-secondary" component="span">
+                        <strong>Status:</strong>
+                      </Typography>
                       <Chip
                         label={selectedApplication.status || "pending"}
                         size="small"
                         color={getStatusColor(selectedApplication.status)}
                       />
-                    </Typography>
+                    </Box>
                   </Box>
                 </Box>
 
@@ -568,8 +593,14 @@ export default function AdminApplicationsPage() {
                 </Box>
               </Box>
             </DialogContent>
-            <DialogActions>
-              <Button onClick={handleCloseDetailDialog}>Close</Button>
+            <DialogActions className="dialog-actions-bar">
+              <Button 
+                variant="outlined" 
+                onClick={handleCloseDetailDialog}
+                className="primary-outline-btn"
+              >
+                Close
+              </Button>
             </DialogActions>
           </>
         )}

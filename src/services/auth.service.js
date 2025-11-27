@@ -2,11 +2,6 @@ import clientPromise from '@/lib/mongodb';
 import { generateAccessToken, generateRefreshToken } from '@/lib/jwt';
 import bcrypt from 'bcryptjs';
 
-/**
- * Authentication Service
- * Handles all authentication-related business logic
- */
-
 const SALT_ROUNDS = 10;
 
 /**

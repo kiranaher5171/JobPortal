@@ -397,7 +397,7 @@ const JobDetailsPage = () => {
         <ReferFriendDialog
           open={referDialogOpen}
           onClose={() => setReferDialogOpen(false)}
-          jobId={job._id}
+          jobId={job._id?.toString() || job._id}
           jobRole={job.jobRole}
         />
       )}

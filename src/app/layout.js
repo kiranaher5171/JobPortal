@@ -114,10 +114,11 @@ export const metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
   manifest: '/manifest.json',
-  icons: {
-    icon: '/icon-192x192.png',
-    apple: '/icon-192x192.png',
-  },
+  // Icons removed - add icon files to public folder if needed for PWA
+  // icons: {
+  //   icon: '/icon-192x192.png',
+  //   apple: '/icon-192x192.png',
+  // },
   category: 'Job Portal',
   classification: 'Job Search Platform',
 };

@@ -55,22 +55,27 @@ export function AuthProvider({ children }) {
    * @param {boolean} isAutoLogout - Whether this is an automatic logout due to session expiry
    */
   const logout = useCallback(async (isAutoLogout = false) => {
+    // Clear timeouts and intervals first
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (warningIntervalRef.current) {
+      clearInterval(warningIntervalRef.current);
+    }
+    
+    // Always clear local auth state, even if API call fails
+    clearAuth();
+    setSessionExpiredDialog(false);
+    
+    // Try to call logout API to invalidate refresh token (non-blocking)
     try {
-      // Clear timeouts and intervals
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      if (warningIntervalRef.current) {
-        clearInterval(warningIntervalRef.current);
-      }
-      
-      // Call logout API to invalidate refresh token
       await post(API_ENDPOINTS.AUTH.LOGOUT);
     } catch (error) {
-      console.error("Logout error:", error);
-    } finally {
-      clearAuth();
-      setSessionExpiredDialog(false);
+      // Silently handle logout API errors - user is already logged out locally
+      // Network errors during logout are acceptable since we've already cleared local state
+      if (process.env.NODE_ENV === 'development') {
+        console.log("Logout API call failed (non-critical):", error.message);
+      }
     }
   }, []);
 

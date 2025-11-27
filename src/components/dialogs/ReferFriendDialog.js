@@ -12,8 +12,11 @@ import {
   Grid,
   Alert,
   Snackbar,
+  IconButton,
+  Divider,
 } from "@mui/material";
 import { UploadFile } from "@mui/icons-material";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 /**
  * Refer Friend Dialog Component
@@ -166,8 +169,8 @@ export default function ReferFriendDialog({ open, onClose, jobId, jobRole }) {
       formDataToSend.append("candidatePhone", formData.candidatePhone);
       formDataToSend.append("message", formData.message);
       formDataToSend.append("resume", formData.resume);
-      formDataToSend.append("jobId", jobId);
-      formDataToSend.append("jobRole", jobRole);
+      formDataToSend.append("jobId", String(jobId || ''));
+      formDataToSend.append("jobRole", String(jobRole || ''));
 
       const token = localStorage.getItem("accessToken");
       if (!token) {
@@ -193,8 +196,9 @@ export default function ReferFriendDialog({ open, onClose, jobId, jobRole }) {
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to submit referral");
+        const errorData = await response.json().catch(() => ({ error: 'Failed to submit referral' }));
+        const errorMessage = errorData.error || `Request failed with status ${response.status}`;
+        throw new Error(errorMessage);
       }
 
       const result = await response.json();
@@ -272,28 +276,39 @@ export default function ReferFriendDialog({ open, onClose, jobId, jobRole }) {
           },
         }}
       >
-        <DialogTitle
-          sx={{
-            flexShrink: 0,
-            borderBottom: "1px solid",
-            borderColor: "divider",
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="h6" className="fw5 white" component="span">
+            Refer a Friend
+          </Typography>
+          {jobRole && (
+            <Typography variant="body2" className="text-secondary" sx={{ mt: 1, display: "block" }}>
+              Job: {jobRole}
+            </Typography>
+          )}
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{ position: "absolute", right: 8, top: 10 }}
+            disabled={loading}
+          >
+            <IoIosCloseCircleOutline className="white" />
+          </IconButton>
+        </DialogTitle>
+        
+        <Box>
+          <Divider />
+        </Box>
+
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+            minHeight: 0,
           }}
         >
-          <Box>
-            <Typography variant="h6" className="fw6" component="span">
-              Refer a Friend
-            </Typography>
-            {jobRole && (
-              <Typography variant="body2" className="text-secondary" sx={{ mt: 1, display: "block" }}>
-                Job: {jobRole}
-              </Typography>
-            )}
-          </Box>
-        </DialogTitle>
-
-        <form onSubmit={handleSubmit}>
           <DialogContent
-            dividers
             sx={{
               flex: 1,
               overflowY: "auto",
@@ -477,23 +492,20 @@ export default function ReferFriendDialog({ open, onClose, jobId, jobRole }) {
             </Box>
           </DialogContent>
 
-          <DialogActions
-            sx={{
-              p: 2,
-              flexShrink: 0,
-              borderTop: "1px solid",
-              borderColor: "divider",
-            }}
-          >
-            <Button onClick={handleClose} variant="outlined" disabled={loading}>
+          <DialogActions className="dialog-actions-bar">
+            <Button 
+              variant="outlined" 
+              onClick={handleClose} 
+              className="primary-outline-btn" 
+              disabled={loading}
+            >
               Cancel
             </Button>
             <Button
               type="submit"
               variant="contained"
               disabled={loading}
-              className="primary"
-              sx={{ minWidth: 150 }}
+              className="primary-action-btn"
             >
               {loading ? "Submitting..." : "Submit Referral"}
             </Button>

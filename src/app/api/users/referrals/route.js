@@ -102,13 +102,19 @@ export async function POST(request) {
     const referralsCollection = db.collection('referrals');
     const jobsCollection = db.collection('jobs');
 
-    // Verify job exists
+    if (!jobId || jobId.trim() === '') {
+      return NextResponse.json(
+        { success: false, error: 'Job ID is required' },
+        { status: 400 }
+      );
+    }
+
     let jobObjectId;
     try {
       jobObjectId = new ObjectId(jobId);
     } catch (e) {
       return NextResponse.json(
-        { success: false, error: 'Invalid job ID format' },
+        { success: false, error: `Invalid job ID format: ${jobId}` },
         { status: 400 }
       );
     }
@@ -116,7 +122,7 @@ export async function POST(request) {
     const job = await jobsCollection.findOne({ _id: jobObjectId });
     if (!job) {
       return NextResponse.json(
-        { success: false, error: 'Job not found' },
+        { success: false, error: `Job not found with ID: ${jobId}` },
         { status: 404 }
       );
     }

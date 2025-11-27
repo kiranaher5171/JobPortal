@@ -59,27 +59,49 @@ export async function POST(request) {
     );
   } catch (error) {
     console.error('Login error:', error);
+    console.error('Error stack:', error.stack);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
     
     // Handle different error types
     if (error.message && (
       error.message.includes('MongoDB') || 
       error.message.includes('MongoServerSelectionError') ||
+      error.message.includes('MongoNetworkError') ||
       error.message.includes('SSL') ||
       error.message.includes('TLS') ||
-      error.message.includes('connection')
+      error.message.includes('connection') ||
+      error.message.includes('Database connection failed')
     )) {
       return NextResponse.json(
         { 
           success: false, 
-          error: 'Database connection failed. Please check your MongoDB connection string in .env.local'
+          error: 'Database connection failed. Please check your MongoDB connection string in .env.local',
+          details: process.env.NODE_ENV === 'development' ? error.message : undefined
         },
         { status: 500 }
       );
     }
     
+    // Handle authentication errors
+    if (error.message && (
+      error.message.includes('Invalid email') ||
+      error.message.includes('Invalid password') ||
+      error.message.includes('not found')
+    )) {
+      return NextResponse.json(
+        { success: false, error: error.message || 'Invalid email or password' },
+        { status: 401 }
+      );
+    }
+    
     return NextResponse.json(
-      { success: false, error: error.message || 'Login failed' },
-      { status: 401 }
+      { 
+        success: false, 
+        error: error.message || 'Login failed',
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      },
+      { status: 500 }
     );
   }
 }

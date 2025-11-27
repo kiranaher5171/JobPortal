@@ -14,8 +14,8 @@ import {
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 /**
- * Job Form Dialog Component (ContainDialog Style)
- * Dialog wrapper for job add/edit form with ContainDialog layout
+ * Job Form Dialog Component
+ * Dialog wrapper for job add/edit form with sticky header and footer
  * 
  * @param {boolean} open - Whether the dialog is open
  * @param {function} onClose - Callback when dialog is closed
