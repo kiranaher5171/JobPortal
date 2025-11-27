@@ -10,8 +10,19 @@ export async function POST(request) {
   try {
     // Check MongoDB connection
     if (!process.env.MONGODB_URI) {
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+      const errorMessage = isProduction
+        ? 'MongoDB connection not configured. Please add MONGODB_URI in Vercel Dashboard → Settings → Environment Variables and redeploy.'
+        : 'MongoDB connection not configured. Please add MONGODB_URI to your .env.local file';
+      
+      console.error('MONGODB_URI missing:', {
+        NODE_ENV: process.env.NODE_ENV,
+        VERCEL: process.env.VERCEL,
+        hasMongoUri: !!process.env.MONGODB_URI
+      });
+      
       return NextResponse.json(
-        { success: false, error: 'MongoDB connection not configured' },
+        { success: false, error: errorMessage },
         { status: 500 }
       );
     }
