@@ -110,10 +110,15 @@ export async function POST(request) {
       error.message.includes('TLS') ||
       error.message.includes('connection')
     )) {
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+      const errorMessage = isProduction
+        ? 'Database connection failed. Please check MONGODB_URI in Vercel Dashboard → Settings → Environment Variables. See MONGODB_CONNECTION_STRING_GUIDE.md for help.'
+        : 'Database connection failed. Please check your MongoDB connection string in .env.local. Run: node test-mongodb-connection.js to test your connection.';
+      
       return NextResponse.json(
         { 
           success: false, 
-          error: 'Database connection failed. Please check your MongoDB connection string in .env.local'
+          error: errorMessage
         },
         { status: 500 }
       );

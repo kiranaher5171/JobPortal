@@ -8,8 +8,13 @@ export async function GET() {
   try {
     // Check if MongoDB URI is configured
     if (!process.env.MONGODB_URI) {
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+      const errorMessage = isProduction
+        ? 'MongoDB connection not configured. Please add MONGODB_URI in Vercel Dashboard → Settings → Environment Variables and redeploy.'
+        : 'MongoDB connection not configured. Please add MONGODB_URI to .env.local';
+      
       return NextResponse.json(
-        { success: false, error: 'MongoDB connection not configured. Please add MONGODB_URI to .env.local' },
+        { success: false, error: errorMessage },
         { status: 500 }
       );
     }
@@ -20,8 +25,13 @@ export async function GET() {
       client = await clientPromise;
     } catch (connectionError) {
       console.error('MongoDB connection error:', connectionError);
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+      const errorMessage = isProduction
+        ? 'Failed to connect to database. Please check MONGODB_URI in Vercel Dashboard → Settings → Environment Variables. Verify the connection string is correct and redeploy.'
+        : 'Failed to connect to database. Please check your MongoDB connection string in .env.local. Run: node test-mongodb-connection.js to test your connection.';
+      
       return NextResponse.json(
-        { success: false, error: 'Failed to connect to database. Please check your MongoDB connection string.' },
+        { success: false, error: errorMessage },
         { status: 500 }
       );
     }
@@ -80,8 +90,13 @@ export async function POST(request) {
   try {
     // Check if MongoDB URI is configured
     if (!process.env.MONGODB_URI) {
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+      const errorMessage = isProduction
+        ? 'MongoDB connection not configured. Please add MONGODB_URI in Vercel Dashboard → Settings → Environment Variables and redeploy.'
+        : 'MongoDB connection not configured. Please add MONGODB_URI to .env.local';
+      
       return NextResponse.json(
-        { success: false, error: 'MongoDB connection not configured. Please add MONGODB_URI to .env.local' },
+        { success: false, error: errorMessage },
         { status: 500 }
       );
     }
@@ -126,8 +141,13 @@ export async function POST(request) {
       client = await clientPromise;
     } catch (connectionError) {
       console.error('MongoDB connection error:', connectionError);
+      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+      const errorMessage = isProduction
+        ? 'Failed to connect to database. Please check MONGODB_URI in Vercel Dashboard → Settings → Environment Variables. Verify the connection string is correct and redeploy.'
+        : 'Failed to connect to database. Please check your MongoDB connection string in .env.local. Run: node test-mongodb-connection.js to test your connection.';
+      
       return NextResponse.json(
-        { success: false, error: 'Failed to connect to database. Please check your MongoDB connection string.' },
+        { success: false, error: errorMessage },
         { status: 500 }
       );
     }
