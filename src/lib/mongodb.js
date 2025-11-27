@@ -11,7 +11,11 @@ let clientPromise;
 function getMongoClient() {
   // Check for MONGODB_URI only when connection is actually needed (runtime)
   if (!process.env.MONGODB_URI) {
-    throw new Error('Please add MONGODB_URI to your .env.local file');
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
+    const errorMessage = isProduction
+      ? 'MONGODB_URI environment variable is not configured. Please add it in your deployment platform (Vercel Dashboard → Settings → Environment Variables).'
+      : 'Please add MONGODB_URI to your .env.local file';
+    throw new Error(errorMessage);
   }
 
   const uri = process.env.MONGODB_URI;
