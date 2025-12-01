@@ -1,8 +1,14 @@
 import { MongoClient } from 'mongodb';
 
+// Improved connection options for production
 const options = {
-  serverSelectionTimeoutMS: 5000,
-  connectTimeoutMS: 10000,
+  serverSelectionTimeoutMS: 30000, // Increased from 5s to 30s for production
+  connectTimeoutMS: 30000, // Increased from 10s to 30s for production
+  socketTimeoutMS: 45000, // Socket timeout
+  maxPoolSize: 10, // Maintain up to 10 socket connections
+  minPoolSize: 1, // Maintain at least 1 socket connection
+  retryWrites: true,
+  w: 'majority',
 };
 
 let client;
@@ -11,14 +17,20 @@ let clientPromise;
 function getMongoClient() {
   // Check for MONGODB_URI only when connection is actually needed (runtime)
   if (!process.env.MONGODB_URI) {
-    const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
-    const errorMessage = isProduction
-      ? 'MONGODB_URI environment variable is not configured. Please add it in your deployment platform (Vercel Dashboard → Settings → Environment Variables).'
-      : 'Please add MONGODB_URI to your .env.local file';
-    throw new Error(errorMessage);
+    throw new Error('MONGODB_URI environment variable is not configured. Please ensure MONGODB_URI is set in your environment variables.');
   }
 
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI.trim();
+
+  // Validate connection string format
+  if (!uri.startsWith('mongodb+srv://') && !uri.startsWith('mongodb://')) {
+    throw new Error('Invalid MongoDB connection string format. Must start with mongodb+srv:// or mongodb://');
+  }
+
+  // Warn if database name is missing (common issue)
+  if (uri.includes('mongodb+srv://') && !uri.match(/mongodb\+srv:\/\/[^/]+\/[^?]/)) {
+    console.warn('⚠️  Warning: Connection string may be missing database name. Expected format: mongodb+srv://user:pass@cluster.mongodb.net/database');
+  }
 
   if (process.env.NODE_ENV === 'development') {
     if (!global._mongoClientPromise) {

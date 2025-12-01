@@ -79,12 +79,48 @@ export async function POST(request) {
       error.message.includes('SSL') ||
       error.message.includes('TLS') ||
       error.message.includes('connection') ||
-      error.message.includes('Database connection failed')
+      error.message.includes('Database connection failed') ||
+      error.message.includes('ENOTFOUND') ||
+      error.message.includes('ETIMEDOUT')
     )) {
+      // Provide more specific error messages
+      let errorMessage = 'Database connection failed.';
+      let suggestions = [];
+
+      if (error.message.includes('MongoServerSelectionError') || error.message.includes('ENOTFOUND')) {
+        errorMessage = 'Cannot reach MongoDB server.';
+        suggestions = [
+          'Check your MongoDB Atlas IP whitelist: Network Access → Add IP Address → Add 0.0.0.0/0 (allow all)',
+          'Verify your MongoDB Atlas cluster is running (not paused)',
+          'Check your connection string format: mongodb+srv://user:password@cluster.mongodb.net/database',
+        ];
+      } else if (error.message.includes('authentication') || error.message.includes('auth')) {
+        errorMessage = 'MongoDB authentication failed.';
+        suggestions = [
+          'Verify your username and password are correct',
+          'Check if password contains special characters (may need URL encoding)',
+          'Try resetting the database user password in MongoDB Atlas',
+        ];
+      } else if (error.message.includes('ETIMEDOUT') || error.message.includes('timeout')) {
+        errorMessage = 'Connection to MongoDB timed out.';
+        suggestions = [
+          'Check your internet connection',
+          'Verify MongoDB Atlas cluster is accessible',
+          'Check firewall settings',
+        ];
+      } else {
+        suggestions = [
+          'Verify your connection string format: mongodb+srv://user:password@cluster.mongodb.net/database',
+          'Check MongoDB Atlas IP whitelist (allow 0.0.0.0/0 for all IPs)',
+          'Ensure your MongoDB Atlas cluster is running',
+        ];
+      }
+
       return NextResponse.json(
         { 
           success: false, 
-          error: 'Database connection failed. Please check your MongoDB connection string in environment variables.',
+          error: errorMessage,
+          suggestions: suggestions.length > 0 ? suggestions : undefined,
           details: process.env.NODE_ENV === 'development' ? error.message : undefined
         },
         { status: 500 }
