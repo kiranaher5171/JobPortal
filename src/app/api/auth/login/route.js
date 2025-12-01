@@ -10,19 +10,16 @@ export async function POST(request) {
   try {
     // Check MongoDB connection
     if (!process.env.MONGODB_URI) {
-      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
-      const errorMessage = isProduction
-        ? 'MongoDB connection not configured. Please add MONGODB_URI in Vercel Dashboard → Settings → Environment Variables and redeploy.'
-        : 'MongoDB connection not configured. Please add MONGODB_URI to your .env.local file';
-      
       console.error('MONGODB_URI missing:', {
         NODE_ENV: process.env.NODE_ENV,
-        VERCEL: process.env.VERCEL,
         hasMongoUri: !!process.env.MONGODB_URI
       });
       
       return NextResponse.json(
-        { success: false, error: errorMessage },
+        { 
+          success: false, 
+          error: 'MongoDB connection not configured. Please ensure MONGODB_URI is set in your environment variables.'
+        },
         { status: 500 }
       );
     }
@@ -84,15 +81,10 @@ export async function POST(request) {
       error.message.includes('connection') ||
       error.message.includes('Database connection failed')
     )) {
-      const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
-      const errorMessage = isProduction
-        ? 'Database connection failed. Please check MONGODB_URI in Vercel Dashboard → Settings → Environment Variables. See MONGODB_CONNECTION_STRING_GUIDE.md for help.'
-        : 'Database connection failed. Please check your MongoDB connection string in .env.local. Run: node test-mongodb-connection.js to test your connection.';
-      
       return NextResponse.json(
         { 
           success: false, 
-          error: errorMessage,
+          error: 'Database connection failed. Please check your MongoDB connection string in environment variables.',
           details: process.env.NODE_ENV === 'development' ? error.message : undefined
         },
         { status: 500 }
